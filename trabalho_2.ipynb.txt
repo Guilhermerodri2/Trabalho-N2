@@ -1,0 +1,538 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "TRABALHO DE COMPUTAÇÃO 2\n",
+        "\n",
+        "Alunos: Ana Carolina Carreiro Magalhães,\n",
+        "        Fernando Guilherme Rodrigues Alves da Silva e\n",
+        "        Rafael Lima Hufnagel Baltar Terra"
+      ],
+      "metadata": {
+        "id": "uZsA7fRGoCU5"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 1- Resposta: Letra C"
+      ],
+      "metadata": {
+        "id": "hhxi8v3PqU9_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def A(m,n):\n",
+        "    if m==0:\n",
+        "        return n+1\n",
+        "    elif m>0 and n==0:\n",
+        "        return A(m-1,1)\n",
+        "    else:\n",
+        "        return A(m-1,A(m,n-1))\n",
+        "print(A(0, 1))\n",
+        "print(A(1, 0))\n",
+        "print(A(0, 3))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "R4KbLv3mo-1F",
+        "outputId": "bcc7a6f7-4625-43c6-8dd2-ef2a2d2bf133"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2\n",
+            "2\n",
+            "4\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 2-"
+      ],
+      "metadata": {
+        "id": "nv1LEr3ysdoF"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from re import X\n",
+        "def exemplo_imut():\n",
+        "     global x\n",
+        "     x = 20\n",
+        "\n",
+        "x = 10\n",
+        "exemplo_imut()\n",
+        "print(x)\n",
+        "\n",
+        "def exemplo_mut(x):\n",
+        "     x[0] = 10\n",
+        "x = [1,2, 3]\n",
+        "exemplo_mut(x)\n",
+        "\n",
+        "print(x)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-LDJoISlqZnL",
+        "outputId": "f4e92462-2296-4386-896c-7a414fb5220f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "20\n",
+            "[10, 2, 3]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 3- Função Recursiva:"
+      ],
+      "metadata": {
+        "id": "MhZLVxeztKSU"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def potencia_recursiva(base, expoente):\n",
+        "    if expoente == 0:\n",
+        "        return 1\n",
+        "    elif expoente == 1:\n",
+        "        return base\n",
+        "    elif expoente > 0:\n",
+        "        return base * potencia_recursiva(base, expoente - 1)\n",
+        "    else:\n",
+        "        return 1 / potencia_recursiva(base, -expoente)\n",
+        "\n",
+        "def main():\n",
+        "    base = float(input(\"Digite a base:\"))\n",
+        "    expoente = int(input(\"Digite o expoente: \"))\n",
+        "\n",
+        "    resultado = potencia_recursiva(base, expoente)\n",
+        "    print(\"Resultado:\", resultado)\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7Siv8PIctQuW",
+        "outputId": "bfa20ed5-1462-4456-9e28-09f46a04f084"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Digite a base:2\n",
+            "Digite o expoente: 10\n",
+            "Resultado: 1024.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Função Iterativa:"
+      ],
+      "metadata": {
+        "id": "3fQGldjMvhRO"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def potencia_iterativa(base, expoente):\n",
+        "    resultado = 1\n",
+        "    if expoente > 0:\n",
+        "        for _ in range(expoente):\n",
+        "            resultado *= base\n",
+        "    elif expoente < 0:\n",
+        "        for _ in range(-expoente):\n",
+        "            resultado /= base\n",
+        "    return resultado\n",
+        "\n",
+        "def main():\n",
+        "    base = float (input(\"Digite a base: \"))\n",
+        "    expoente = int(input( \"Digite o expoente: \"))\n",
+        "\n",
+        "    resultado = potencia_iterativa(base, expoente)\n",
+        "    print(\"Resultado:\", resultado)\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9bA4trB9vmOK",
+        "outputId": "8c5c7720-11fc-42c8-9a4c-99af43372069"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Digite a base: 6\n",
+            "Digite o expoente: 2\n",
+            "Resultado: 36.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 4-"
+      ],
+      "metadata": {
+        "id": "epFNwSYCy__U"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "A= np.array([[2,1],[-1,3]])\n",
+        "B= np.array([[3,-1],[1,2]])\n",
+        "z= np.array(np.array([[0,0],[0,0]]))\n",
+        "def M(x,y):\n",
+        "  z[0,0]= x[0,0]*y[0,0] + x[0,1]*y[1,0]\n",
+        "  z[0,1]= x[0,0]*y[0,1] + x[0,1]*y[1,1]\n",
+        "  z[1,0]= x[1,0]*y[0,0] + x[1,1]*y[1,0]\n",
+        "  z[1,1]= x[1,0]*y[0,1] + x[1,1]*y[1,1]\n",
+        "  return z\n",
+        "\n",
+        "result = M(A, B)\n",
+        "print(result)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "FhQCkF0qzIaF",
+        "outputId": "661c4455-b319-432b-b907-21a7e0849a18"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[7 0]\n",
+            " [0 7]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 5- Resposta: Letra D."
+      ],
+      "metadata": {
+        "id": "Spy8mOKj3aGY"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 6-\n",
+        "\n",
+        "inicio\n",
+        "\n",
+        "contaPerfeitos ← 0 contaQuasePerfeitos ← 0 para n ← 6 até 8 faça somaDivisores ← 0 para divisor ← 1 até n-1 faça se n MOD divisor =0 então somaDivisores ← somaDivisores + divisor fim se próximo divisor se somaDivisores = n então\n",
+        "contaPerfeitos ← contaPerfeitos + 1 senão se (-2 <= (n-somaDivisores))E((n-somaDivisores) <= 2) então contaQuasePerfeitos ← contaQuasePerfeitos + 1 fim se fim se próximo n imprima contaPerfeitos,'', contaQuasePerfeitos\n",
+        "\n",
+        "fim"
+      ],
+      "metadata": {
+        "id": "rVCrg1Vb3xzZ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "contaPerfeitos = 0\n",
+        "contaQuasePerfeitos = 0\n",
+        "\n",
+        "for n in range(6, 9):\n",
+        "     somaDivisores = 0\n",
+        "     for divisor in range(1, n):\n",
+        "         if n % divisor == 0:\n",
+        "             somaDivisores += divisor\n",
+        "     if somaDivisores == n:\n",
+        "         contaPerfeitos += 1\n",
+        "     else:\n",
+        "         if -2 <= (n - somaDivisores) <= 2:\n",
+        "             contaQuasePerfeitos += 1\n",
+        "\n",
+        "print(contaPerfeitos, contaQuasePerfeitos)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "C2xZCm119UFP",
+        "outputId": "32207414-224e-4908-9757-c74ca01a9a1c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1 1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 7- Resposta: Letra A."
+      ],
+      "metadata": {
+        "id": "W-YPFsYP5QTk"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s=input ('Digite uma frase: ')\n",
+        "tam=len(s)\n",
+        "for i in range(tam):\n",
+        "    if s[i]!=' ':\n",
+        "         print(s[i], end='')\n",
+        "    else:\n",
+        "         print()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "r1kNdVOj5scY",
+        "outputId": "bd232c93-5e82-4d8a-d8b9-daaeab3a3d55"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Digite uma frase: Seja um incentivador!\n",
+            "Seja\n",
+            "um\n",
+            "incentivador!"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 8-"
+      ],
+      "metadata": {
+        "id": "hgSgYInWAXH2"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "\n",
+        "\n",
+        "import io\n",
+        "#simulação do arquivo GfG.txt\n",
+        "file_content = \"código é como humor. Quando você tem que explicar, é ruim.\"\n",
+        "\n",
+        "#explicação de um objeto em arquivo em memória\n",
+        "file_object = io.StringIO(file_content)\n",
+        "\n",
+        "#codigo do problema\n",
+        "file_object.seek(0)\n",
+        "file_object.seek(21)\n",
+        "print(file_object.tell())\n",
+        "print(file_object.readline())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uvDi5XRJvvmb",
+        "outputId": "493cef3d-5fe2-4293-f275-d7b0ea58509f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "21\n",
+            "Quando você tem que explicar, é ruim.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 9-"
+      ],
+      "metadata": {
+        "id": "rLmDN84JAamk"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "arquivo = open ('arquivo-mdc.txt', 'w')\n",
+        "arquivo.close()\n",
+        "\n",
+        "def MDC(p1,p2):\n",
+        "    global arquivo\n",
+        "    if p1 == p2:\n",
+        "       arquivo = open('arquivo-mdc.txt','a')\n",
+        "       arquivo.write('MDC='+str(p1)+'\\n')\n",
+        "       arquivo.close()\n",
+        "       return p1\n",
+        "    elif p1 > p2:\n",
+        "       arquivo = ('arquivo-mdc.txt','a')\n",
+        "       arquivo.write('MDC=('+str(p1-p2)+','+str(p2)+')\\n')\n",
+        "       arquivo.close()\n",
+        "       return MDC(p1-p2,p2)\n",
+        "\n",
+        "    else:\n",
+        "       arquivo = open('arquivo-mdc.txt','a')\n",
+        "       arquivo.write('MDC=('+str(p1)+','+str(p2-p1)+')\\n')\n",
+        "       arquivo.close()\n",
+        "       return MDC(p1,p2-p1)\n",
+        "def mdc(x,y):\n",
+        "    if y==0:\n",
+        "       return x\n",
+        "    else:\n",
+        "       return mdc(y,x%y)\n",
+        "#Teste\n",
+        "for i in range(1,5):\n",
+        "    for j in range(0,5):\n",
+        "        print(f'mdc({i}, {j})={mdc(i,j)}')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q6Eu2_KeAeE3",
+        "outputId": "226146f0-12b5-4e94-81a7-d4533212136f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "mdc(1, 0)=1\n",
+            "mdc(1, 1)=1\n",
+            "mdc(1, 2)=1\n",
+            "mdc(1, 3)=1\n",
+            "mdc(1, 4)=1\n",
+            "mdc(2, 0)=2\n",
+            "mdc(2, 1)=1\n",
+            "mdc(2, 2)=2\n",
+            "mdc(2, 3)=1\n",
+            "mdc(2, 4)=2\n",
+            "mdc(3, 0)=3\n",
+            "mdc(3, 1)=1\n",
+            "mdc(3, 2)=1\n",
+            "mdc(3, 3)=3\n",
+            "mdc(3, 4)=1\n",
+            "mdc(4, 0)=4\n",
+            "mdc(4, 1)=1\n",
+            "mdc(4, 2)=2\n",
+            "mdc(4, 3)=1\n",
+            "mdc(4, 4)=4\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Questão 10-"
+      ],
+      "metadata": {
+        "id": "IK6VGsaRDhTY"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "known = {0:0,1:1}\n",
+        "def fibonacci(n):\n",
+        "    if n in known:\n",
+        "        return known[n]\n",
+        "    res = fibonacci(n-1)+ fibonacci (n-2)\n",
+        "    known[n] = res\n",
+        "    return res\n",
+        "\n",
+        "print(fibonacci(100))\n",
+        "print(known)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bH2qIfVVDm3q",
+        "outputId": "441cb874-f285-4179-88d6-426581933f46"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "354224848179261915075\n",
+            "{0: 0, 1: 1, 2: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21, 9: 34, 10: 55, 11: 89, 12: 144, 13: 233, 14: 377, 15: 610, 16: 987, 17: 1597, 18: 2584, 19: 4181, 20: 6765, 21: 10946, 22: 17711, 23: 28657, 24: 46368, 25: 75025, 26: 121393, 27: 196418, 28: 317811, 29: 514229, 30: 832040, 31: 1346269, 32: 2178309, 33: 3524578, 34: 5702887, 35: 9227465, 36: 14930352, 37: 24157817, 38: 39088169, 39: 63245986, 40: 102334155, 41: 165580141, 42: 267914296, 43: 433494437, 44: 701408733, 45: 1134903170, 46: 1836311903, 47: 2971215073, 48: 4807526976, 49: 7778742049, 50: 12586269025, 51: 20365011074, 52: 32951280099, 53: 53316291173, 54: 86267571272, 55: 139583862445, 56: 225851433717, 57: 365435296162, 58: 591286729879, 59: 956722026041, 60: 1548008755920, 61: 2504730781961, 62: 4052739537881, 63: 6557470319842, 64: 10610209857723, 65: 17167680177565, 66: 27777890035288, 67: 44945570212853, 68: 72723460248141, 69: 117669030460994, 70: 190392490709135, 71: 308061521170129, 72: 498454011879264, 73: 806515533049393, 74: 1304969544928657, 75: 2111485077978050, 76: 3416454622906707, 77: 5527939700884757, 78: 8944394323791464, 79: 14472334024676221, 80: 23416728348467685, 81: 37889062373143906, 82: 61305790721611591, 83: 99194853094755497, 84: 160500643816367088, 85: 259695496911122585, 86: 420196140727489673, 87: 679891637638612258, 88: 1100087778366101931, 89: 1779979416004714189, 90: 2880067194370816120, 91: 4660046610375530309, 92: 7540113804746346429, 93: 12200160415121876738, 94: 19740274219868223167, 95: 31940434634990099905, 96: 51680708854858323072, 97: 83621143489848422977, 98: 135301852344706746049, 99: 218922995834555169026, 100: 354224848179261915075}\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
